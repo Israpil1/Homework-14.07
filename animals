@@ -1,0 +1,109 @@
+//Создать абстрактный базовый класс «Животное» с абстрактным методом
+//«Издать Звук» и производные классы «Тигр», «Крокодил», «Кенгуру». С
+//помощью конструктора установить имя каждого животного и его
+//характеристики. Создайте для каждого класса необходимые методы и поля.
+//Используйте виртуальные методы.
+
+
+using System;
+
+namespace consoleApp1
+{
+   public abstract class Animal
+    {
+        string typeOfAnimal;
+        string nameOfAnimal;
+
+        public Animal(string type, string name)
+        {
+            nameOfAnimal = name;
+            typeOfAnimal = type;
+        }
+        public abstract void MakeSound();
+
+        public virtual void Print()
+        {
+            Console.WriteLine($"\nЖивотное: {typeOfAnimal}\n" +
+                $"Имя: {nameOfAnimal}");
+        }
+
+    }
+
+    public class Tiger : Animal
+    {
+        string stripes;
+        public Tiger(string type, string name, string str) : base(type, name) 
+        { 
+            stripes = str;
+        }
+        public override void MakeSound()
+        {
+            Console.WriteLine("Звук, который издает: Рёв");
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Console.WriteLine("Полосы: " + stripes);
+        }
+
+    }
+
+    public class Crocodile : Animal
+    {
+        string leather;
+        public Crocodile(string type, string name, string lthr) : base(type, name)
+        {
+            leather = lthr;
+        }
+        public override void MakeSound()
+        {
+            Console.WriteLine("Звук, который издает: Рокот");
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Console.WriteLine("Кожа: " + leather);
+        }
+
+    }
+
+    public class Kangaroo : Animal
+    {
+        string jump;
+        public Kangaroo(string type, string name, string jmp) : base(type, name)
+        {
+            jump = jmp;
+        }
+        public override void MakeSound()
+        {
+            Console.WriteLine("Звук, который издает: Хриплое покашливание");
+        }
+
+        public override void Print()
+        {
+            base.Print();
+            Console.WriteLine("Прыгучесть: " + jump);
+        }
+
+        static void Main()
+        {
+            Animal[] animals =
+            {
+                new Tiger ("Тигр", "Тигруля", "Черно-оранжевые полосы"),
+                new Crocodile("Крокодил" , "Крокоша", "Ороговевшая кожа"),
+                new Kangaroo("Кенгуру", "Джо", "Умеет прыгать")
+            };
+
+            foreach (Animal item in animals)
+            {
+                item.Print();
+                item.MakeSound();
+            }
+        }
+
+    }
+
+    
+}
